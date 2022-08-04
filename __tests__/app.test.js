@@ -9,7 +9,6 @@ describe('book routes', () => {
   });
   it('#GET /books should return a list of books', async () => {
     const resp = await request(app).get('/books');
-    console.log(resp.body);
     expect(resp.status).toBe(200);
     expect(resp.body).toEqual([
       {
@@ -38,6 +37,15 @@ describe('book routes', () => {
         released: 2006
       },
     ]);
+  });
+  it('#GET books/:id should return a single book', async () => {
+    const resp = await request(app).get('/books/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      title: 'The Wise Mans Fear',
+      released: 2011
+    });
   });
   afterAll(() => {
     pool.end();

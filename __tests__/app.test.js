@@ -71,6 +71,16 @@ describe('book routes', () => {
       },
     ]);
   });
+  it('#GET /authors/:id should return a single author', async () => {
+    const resp = await request(app).get('/authors/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: '2',
+      name: 'Neil Gaiman',
+      dob: 1960,
+      pob: 'Portchester, Hampshire, England'
+    });
+  });
   afterAll(() => {
     pool.end();
   });

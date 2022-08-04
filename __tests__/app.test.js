@@ -38,7 +38,7 @@ describe('book routes', () => {
       },
     ]);
   });
-  it('#GET books/:id should return a single book', async () => {
+  it('#GET /books/:id should return a single book', async () => {
     const resp = await request(app).get('/books/2');
     expect(resp.status).toBe(200);
     expect(resp.body).toEqual({
@@ -46,6 +46,30 @@ describe('book routes', () => {
       title: 'The Wise Mans Fear',
       released: 2011
     });
+  });
+  it('#GET /authors should return a list of authors', async () => {
+    const resp = await request(app).get('/authors');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual([
+      {
+        id: '1',
+        name: 'Patrick Rothfuss',
+        dob: 1973,
+        pob: 'Madison, Wisconsin'
+      },
+      {
+        id: '2',
+        name: 'Neil Gaiman',
+        dob: 1960,
+        pob: 'Portchester, Hampshire, England'
+      },
+      {
+        id: '3',
+        name: 'Terry Pratchett',
+        dob: 1948,
+        pob: 'Buckinghamshire, England'
+      },
+    ]);
   });
   afterAll(() => {
     pool.end();

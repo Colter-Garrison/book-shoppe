@@ -13,7 +13,7 @@ CREATE TABLE books (
 CREATE TABLE authors (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   name VARCHAR NOT NULL,
-  dob DATE,
+  dob INT NOT NULL,
   pob VARCHAR
 );
 
@@ -50,17 +50,17 @@ INSERT INTO books (title, released) VALUES
 INSERT INTO authors (name, dob, pob) VALUES
 (
   'Patrick Rothfuss',
-  '1973-06-06',
+  1973,
   'Madison, Wisconsin'
 ),
 (
   'Neil Gaiman',
-  '1960-11-10',
+  1960,
   'Portchester, Hampshire, England'
 ),
 (
   'Terry Pratchett',
-  '1948-04-28',
+  1948,
   'Buckinghamshire, England'
 );
 

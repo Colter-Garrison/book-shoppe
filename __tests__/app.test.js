@@ -81,6 +81,31 @@ describe('book routes', () => {
       pob: 'Portchester, Hampshire, England'
     });
   });
+  it('#POST /books should create a new book', async () => {
+    const newBook = {
+      title: 'The Hobbit',
+      released:  1937
+    };
+    const resp = await request(app).post('/books').send(newBook);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newBook,
+    });
+  });
+  it('#POST /authors should create a new author', async () => {
+    const newAuthor = {
+      name: 'J. R. R. Tolkien',
+      dob: 1892,
+      pob: 'Bloemfontein, Orange Free State'
+    };
+    const resp = await request(app).post('/authors').send(newAuthor);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toEqual({
+      id: expect.any(String),
+      ...newAuthor,
+    });
+  });
   afterAll(() => {
     pool.end();
   });
